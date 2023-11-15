@@ -21,24 +21,12 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-north-1
-    
-    - name: Get ECR Registry URL
-      id: get-ecr-registry
-      run: |
-        ECR_REGISTRY_URL=$(aws ecr get-login-password --region eu-north-1)
-        echo "ECR_REGISTRY=$ECR_REGISTRY_URL" >> $GITHUB_ENV
-        echo "ECR_REGISTRY=$ECR_REGISTRY_URL" >> $GITHUB_OUTPUT
-
-    - name: Build, tag, and push Docker image to Amazon ECR
-      env:
-        TEST: ${{ env.ECR_REGISTRY }}
-      run: echo $TEST
 
     - name: Build, tag, and push Docker image to Amazon ECR
       env:
         # ECR_REGISTRY: ${{ steps.get-ecr-registry.outputs.registry }}
-        # ECR_REGISTRY: 147017997364.dkr.ecr.eu-north-1.amazonaws.com
-        ECR_REGISTRY: ${{ env.ECR_REGISTRY }}
+        ECR_REGISTRY: 147017997364.dkr.ecr.eu-north-1.amazonaws.com
+        # ECR_REGISTRY: ${{ env.ECR_REGISTRY }}
         ECR_REPOSITORY: booking-api-ecr
         IMAGE_TAG: ${{ github.ref_name }}
       run: |
