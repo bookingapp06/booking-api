@@ -24,7 +24,7 @@ jobs:
     
     - name: Get ECR Registry URL
       id: get-ecr-registry
-       run: |
+      run: |
         ECR_REGISTRY_URL=$(aws ecr get-login-password --region eu-north-1)
         echo "ECR_REGISTRY=$ECR_REGISTRY_URL" >> $GITHUB_ENV
         echo "ECR_REGISTRY=$ECR_REGISTRY_URL" >> $GITHUB_OUTPUT
