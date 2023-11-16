@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.commitHash }}
 
     - name: Setup AWS Credentials
       uses: aws-actions/configure-aws-credentials@v3
