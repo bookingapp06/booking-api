@@ -11,7 +11,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_NAME,
-  host: DB_HOST,
+  host: DB_HOST?.split(':')[0],
   synchronize: false,
   logging: false,
   migrationsTableName: 'migrations',
